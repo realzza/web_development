@@ -42,6 +42,9 @@
                 Adapted from the DCASE 2017 <i>bulbul</i> challenge baseline, we build a feed forward 2D Convolutional Neural Network. The Network is composed of four CNN layers and three dense layers, as shown in the following graph.
             </p>
             <img src="images/bulbulNet.png" alt="DCASE 2017 baseline architecture" class="responsive_image">
+            <p id="image-caption">
+                Figure 1: Pipeline of Bulbul Baseline
+            </p>
             <p>
                 This architecture was trained using log Mel filter bank energy features extracted from bird sound segments. The frame length is designed to be 46ms with a Hamming window function. The step size is 14ms, indicating the overlap of 70% among frames. Then Fast Fourier Transform is conducted, after that, the Mel filter banks with 80 bands are computed for each frame. The features will be normalized between 0 and 1 before fed into the network. 
             </p>
@@ -145,7 +148,7 @@
             </h2>
                 <p>
                     As it has mentioned by Professor Ming Li in the last group meeting, nevertheless using voting is very effective, it seems quite dumb among various techniques. Attention mechanism is a good alternative for the voting system. In the future research, I will try to realize this function.
-Another possible improvement for the naïve end-to-end classifier is that there could be a fusion of features to improve the training performance. Instead of getting the output from single feature, using fused feature will improve the performance.
+Another possible improvement for the naive end-to-end classifier is that there could be a fusion of features to improve the training performance. Instead of getting the output from single feature, using fused feature will improve the performance.
                 </p>
 
     </body>
