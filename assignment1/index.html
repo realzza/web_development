@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>ISS241 Assignment 1</title>
+        <link rel="stylesheet" href="styles.css">
+        <meta name="author" content="Ziang Zhou">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <h1>Independent study report: Bird Activity Detection and Bird Song Identification using Deep Learning Methods</h1>
+        <p class="author_info">
+            Ziang Zhou &nbsp;&nbsp;&nbsp; Dec 21<sup>st</sup> 2020
+        </p>
+
+        <h3 class="section_title">
+            Abstract            
+        </h3>
+            <p>
+                Detection of bird activities and identify the species with birds' songs is a challenging and meaningful task. For this semester's independent study project, I looked into efficient and effective ways to achieve the objective. For the bird activity detection task, I solved the binary classification task with data provided in DCASE 2018 using convolutional neural network in Tensorflow framework. For the second task, I trained convolutional neural network with spectrograms we extracted from bird songs under PyTorch framework. The main purpose of the BAD model is to reduce false alarm as much as possible. Besides, we did a voting for long segment of bird songs, to ensure the dominant species is identified. The BAD model achieved AUC score 0.9708 on the validation set, which outscore the winner of DCASE 2018. For the model of 30 common birds in Guangdong, we achieved 0.67 top 1 identification accuracy, and 0.82 top 1 accuracy after I introduce voting to the end-to-end classifier.<br>
+                <em>Keywords: bird activity detection, bird song, convolutional neural network</em>
+            </p>
+        <h2 class="section_title">
+            1 Introduction
+        </h2>
+            <p>
+                The independent research is supported by Duke Kunshan University, and instructed by Professor Ming Li, PhD. The report will be segmented into two parts. The first part is the bird activity detection system. The development data involves 7,690 excerpts from field recordings around the world, 8,000 smartphone audio recordings from around the UK and 20,000 bird clips collected from remote monitoring units placed near Ithaca. For the evaluation, a held-out set of 2,000 smartphone audio recordings from around the UK, 6,620 clips collected from unattended remote monitoring equipment in the Chernobyl Exclusion Zone including a wide range of birds, and 4,000 recordings from Hanna Pamula's PhD Project regarding remote monitoring night-flight calls. For the multiple classification part, all the data of bird songs are crawled from <a href=https://www.xeno-canto.org/>xeno-canto.org</a>. Taking advantage of the open-source data, we segmented the data before applying it to training purpose. A training set of 120,000 bird song segments covering 30 bird species with mono-phone recordings are obtained. Each bird song segment is 5 second with sample rate 44.1 kHz. In the following sections, I will address the bird activity detection system and classification system, respectively.
+            </p>
+        <h2 class="section_title">
+            2 Bird Activity Detection
+        </h2>
+            <p>
+                Recently, bioaccoustic became increasingly focusing on animal communication signals and its analysis. A good bioaccoustic detection system is also saving huge amount of manual work on identifying and labeling tons of data. In recent years, speech processing and machine learning techniques are applied to this field. In the scenario for this project, we want to detect whether bird appears in the recordings before we apply the classification model. 
+            </p>
+            <p>
+                Our system is based on a convolutional neural network structure adapted from the baseline architecture of DCASE 2017's challenge bulbul. We used preprocessed time-frequency features such as Mel-frequency spectrogram and other cepstral features as input to the CNN architecture. The results of our experiment are given as Area under the Curve (AUC) of the Receiver Operating Characteristic Curve (ROC) of the predicted probabilities.
+            </p>
+            <p>
+                As I have introduced in the general introduction, the development dataset and the evaluation dataset are independent datasets which has various sample rate, environmental noises, bird species number and so on. Each dataset has its unique characteristics, which gives a good generalization of the non-avian interfering sound sources. This is crucial to our project, since the environment we plan to apply this model is complicated and often will interact with human sounds. We can therefore effectively filter the interference that might be brought by human sound and reduce the false alarm.
+            </p>
+            <p>
+                Adapted from the DCASE 2017 <i>bulbul</i> challenge baseline, we build a feed forward 2D Convolutional Neural Network. The Network is composed of four CNN layers and three dense layers, as shown in the following graph.
+            </p>
+            <img src="images/bulbulNet.png" alt="DCASE 2017 baseline architecture" class="responsive_image">
+            <p>
+                This architecture was trained using log Mel filter bank energy features extracted from bird sound segments. The frame length is designed to be 46ms with a Hamming window function. The step size is 14ms, indicating the overlap of 70% among frames. Then Fast Fourier Transform is conducted, after that, the Mel filter banks with 80 bands are computed for each frame. The features will be normalized between 0 and 1 before fed into the network. 
+            </p>
+            <p>
+                As for the training process and configuration, the details are as follow. The architecture adopted L2 regularization for CNN layers with regularization parameter 0.01. Also, Adam optimizer is adapted started with learning rate of 0.001, which will be reduced by a factor of 0.2 with the patience of 5 epochs. The loss function is binary cross entropy loss using accuracy as metric. The activation functions are leaky RELU in the CNN layers and sigmoid in the last dense layer<a href="http://dcase.community/documents/challenge2018/technical_reports/DCASE2018_Liaqat_96.pdf">[1]</a>. The batch size of this training process is set to be 16, number of epochs is about 40 epochs. 
+            </p>
+            <p>
+                After 36 epochs of iteration, the learning rate of optimizer Adam has reduced from 1e-3 to 4e-5. The AUC on the validation set has achieved 0.9708 with optimized cross entropy loss of 0.2305. This result is surprisingly good that it outperforms the winning team of DCASE 2018.
+            </p>
+            <p>
+                As is mentioned above, this system still has space for improvement. First, since this whole dataset is composed of 6 unique sub datasets, each sub one has a different composition of songs/noise. The current solution to this problem is by equalizing class weights to avoid mismatch in class representations. But better way to deal with this problem is trying to balance each dataset with the data augmentation approach. Second, since the dataset is composed of six difference datasets (two are collected under same condition), the recording environment, recording devices and sample rate varies. Thus, it would be helpful to adopt domain adaption to this system, which allows models that are performing well quickly applied on new datasets. 
+            </p>
+        <h2 class="section_title">
+            3 End-to-end Bird Song Classification System
+        </h2>
+            <h3 class="subsection_title">3.1 Background Introduction</h3>
+                <p>
+                    There has been reported that some birds in Guangdong Areas are nesting on the electric-power line, which increases the resistance and therefore increases the heat loss. To prevent this from happening, a local company is considering playing the bird’s natural enemy’s sound once detected bird activity around the power transmission line. This requires us to accurately identify the bird species given the bird sound. The BAD system is extremely useful here, since it filters out environmental noise and focuses completely on the bird activity detection, therefore the false alarm can be reduced significantly, saving energy and computational resources.
+                </p>
+            <h3 class="subsection_title">3.2 Data</h3>
+                <h4 class="subsection_title">3.2.1 Data Collection</h4>
+                    <p>
+                        The source of all the data is from open-source website www.xeno-canto.org. As for the demo training plan, we chose 30 most common birds in Guangdong Area. The name list of these 30 birds will be mentioned in later part of this report. We scrapped recordings of these 30 birds from this website using a command line tool called xeno-canto.
+                    </p>
+                <h4 class="subsection_title">3.2.2 Data Preprocessing</h4>
+                <p>
+                    Since the website is open source to recordist all over the world, the recordings vary in sample rate and recording quality. To unify the sample rate for later training, we applied the transformer from sox toolkit, which transforms untrainable form ".mp3" to trainable form ".wav" and unifies the sample rate to 44.1 kHz to guarantee the best quality of these training recordings.
+                </p>
+                <ol>
+                    <li>
+                        First, we split the dataset into training set and validation set. Be aware that this must take place before the segmentation step, because if the order swaps, it will lead to some of the validation seen already during the training process. Therefore, we need to do the split first before we segment the recordings. When splitting the recordings, we assign the training set the weight of 0.85, and the validation set with weight of 0.15.
+                    </li>
+                    <li>
+                        Next, we carry out the segmentation step. From previous experience<a href="http://ceur-ws.org/Vol-2125/paper_77.pdf">[2]</a>, we learned that it is best that we can segment the recordings with overlap so that we can better learn the pattern of the birds without worrying that the segments will be interrupted by noises. We set the segment length to 5 seconds, with the overlap of 4 seconds, which is to say the window shift length is 1 second. Regarding how we do the segmentation, the very first try is applying librosa to transform audio to array form, and segment on the array instead of the audio. However, I found that there will be damage to the segments after comparing them with the unsegmented recording. Thus, I adopted the trim method in sox, which is extremely efficient and reliable.
+                    </li>
+                    <li>
+                        After segmenting the recordings into 5-second clips, we applied the BAD model we trained before to detect the noises. We want to exclude the impact brought by the noises, because noise literally don't belong to any of the bird species, it does not make any sense if some of the to-be-classified objects are noises. Therefore, by applying BAD methods on the segmented dataset, we successfully teased out the noise segments. Also, one more thing to mention is that the sample rate of the segment must be in line with the sample rate of the BAD system. In this case, both are 44.1kHz.
+                    </li>
+                    <li>
+                        After the noise detection, some of the segments are labelled as noise, and will not take part in the following training process. After analyzing the number of segments, we decided to randomly choose 4,000 segments as training set and 400 segments as the validation set. The reason for this is that we want to control the degree of dataset imbalance to a small and acceptable range. Thus we have approximately 120,000 segments for the final training set, and 12,000 segments for the final validation set.
+                    </li>
+                    <li>
+                        Next, we preprocess the data to extract the features from segments. Since we will do multiple experiments on the same dataset, it is extremely time-wasting if we need to extract the features from the segments each time we start the training. Thus, we extract the features for all the segments before we actually start to train our classifier. We extract the Log Filter bank Energies and Mel Frequency Cepstral Coefficient for each segment and store it into ".h5" files. We can refer to the features in every training session since then.
+                    </li>
+                    <li>
+                        Last but not least, we prepare the index files, including <i>utt_scp</i>, <i>utt2label</i> and <i>label2int</i> files for the training procedure. 
+                    </li>
+                </ol>
+                <h4 class="subsection_title">
+                    3.2.3 Features: MFCC and Logfbank
+                </h4>
+                    <p>
+                        The Mel Frequency Cepstral Coefficient and Log Filter bank Energies is extracted using the following configuration. 
+                    </p>
+                        <table id="config">
+                            <tr>
+                                <th>Sample Rate</th>
+                                <td>44.1kHz</td>
+                            </tr>
+                            <tr>
+                                <th>Window Length</th>
+                                <td>25ms</td>
+                            </tr>
+                            <tr>
+                                <th>Window Shift</th>
+                                <td>10ms</td>
+                            </tr>
+                            <tr>
+                                <th>Overlap</th>
+                                <td>0.6</td>
+                            </tr>
+                            <tr>
+                                <th>Low Freqency</th>
+                                <td>500Hz</td>
+                            </tr>
+                            <tr>
+                                <th>High Frequency</th>
+                                <td>12kHz</td>
+                            </tr>
+                            <tr>
+                                <th>nfilters</th>
+                                <td>256</td>
+                            </tr>
+                            <tr>
+                                <th>nfft</th>
+                                <td>1024</td>
+                            </tr>
+                            <tr>
+                                <th>pre-emph</th>
+                                <td>0.97</td>
+                            </tr>
+                        </table>
+
+                    <p> 
+                        We will do Cepstral Mean normalization (CMN) after extracting these features.
+
+                    </p>
+
+            <h2 class="section_title">
+                4 Future Work
+            </h2>
+                <p>
+                    As it has mentioned by Professor Ming Li in the last group meeting, nevertheless using voting is very effective, it seems quite dumb among various techniques. Attention mechanism is a good alternative for the voting system. In the future research, I will try to realize this function.
+Another possible improvement for the naïve end-to-end classifier is that there could be a fusion of features to improve the training performance. Instead of getting the output from single feature, using fused feature will improve the performance.
+                </p>
+
+    </body>
+</html>
