@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
+body {
+    font-size: 1rem;
+    font-family: 'Lato', sans-serif;
+    color: #313638;
+    background-color: #FFFFFF;
+    padding-bottom: 25px;
+    padding-top: 15px;
+    /* text-align: justify; */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+
+li, p {
+    width: 70%;
+    line-height: 1.5;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: auto;
+    text-align: justify;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+h1 {
+    text-align: unset;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.article_title {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.author_info {
+    color: #5c80bc;
+    font-family: 'Roboto Condensed', sans-serif;
+}
