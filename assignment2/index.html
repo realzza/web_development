@@ -11,7 +11,8 @@
         color: #fff;
         background-color: rgba(0, 0, 0, 0.6);
         font-size: 120%;
-        max-width: 40%;
+        min-width: 40%;
+        max-width: 45%;
         padding: 1em 1.2em;
         margin: 1.7em;
         float: left;
@@ -25,6 +26,10 @@
         padding: 1em 1.2em;
         margin: 1.8em;
         float: right;
+      }
+
+      .navbar-custom {
+        background-color: #c8361d;
       }
 
       #wrapper {
@@ -49,7 +54,7 @@
       }
 
       img:hover {
-        transform: scale(1.05);
+        transform: scale(1.03);
         opacity: 1;
       }
     </style>
@@ -68,7 +73,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <nav class="navbar navbar-dark bg-dark navbar-expand-md">
+    <nav class="navbar navbar-dark navbar-expand-md navbar-custom">
       <a class="navbar-brand" href="#"
         ><svg
           xmlns="http://www.w3.org/2000/svg"
@@ -107,10 +112,12 @@
     <!-- <img src="images/hotpot.jpg" alt="sichuan hotpot" /> -->
     <div id="wrapper">
       <div class="text-container-left">
-        <h1 class="abs-title">Sichuanese&nbsp;Food</h1>
-        Sichuan is a province located at southeast China, which is also my
-        hometown. Sichuan is famous for its delicious food and spicy tastes.
-        Here are some recommendations.
+        <h2 class="abs-title">Sichuanese&nbsp;Food</h2>
+        <div id="titleDesc">
+          Sichuan is a province located at southeast China, which is also my
+          hometown. Sichuan is famous for its delicious food and spicy tastes.
+          Below are some recommendations.
+        </div>
       </div>
       <!-- <div class="text-container-right">
         Sichuan is a province located at southeast China, which is also my
@@ -121,27 +128,15 @@
     <div class="row" id="gallery">
       <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
         <img
-          src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
+          src="images/mapotofu_fill.jpg"
           class="w-100 shadow-1-strong rounded mb-4"
           alt=""
         />
 
         <img
-          src="https://mdbootstrap.com/img/Photos/Vertical/mountain1.jpg"
-          class="w-100 shadow-1-strong rounded mb-4"
-          alt=""
-        />
-      </div>
-
-      <div class="col-lg-4 mb-4 mb-lg-0">
-        <img
-          src="https://mdbootstrap.com/img/Photos/Vertical/mountain2.jpg"
-          class="w-100 shadow-1-strong rounded mb-4"
-          alt=""
-        />
-
-        <img
-          src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(73).jpg"
+          src="images/fenzhenrou.jpg"
+          width="472"
+          height="699"
           class="w-100 shadow-1-strong rounded mb-4"
           alt=""
         />
@@ -149,13 +144,27 @@
 
       <div class="col-lg-4 mb-4 mb-lg-0">
         <img
-          src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(18).jpg"
+          src="images/hotpot_fill.jpg"
           class="w-100 shadow-1-strong rounded mb-4"
           alt=""
         />
 
         <img
-          src="https://mdbootstrap.com/img/Photos/Vertical/mountain3.jpg"
+          src="images/laziji.jpg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt=""
+        />
+      </div>
+
+      <div class="col-lg-4 mb-4 mb-lg-0">
+        <img
+          src="images/shaokao_fill.jpg"
+          class="w-100 shadow-1-strong rounded mb-4"
+          alt=""
+        />
+
+        <img
+          src="images/laomachaoshou_fill.jpg"
           class="w-100 shadow-1-strong rounded mb-4"
           alt=""
         />
