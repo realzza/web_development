@@ -137,6 +137,13 @@ h6,
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 10px -1px;
 }
 
+.icon:hover {
+  /* color: #b4b0b0; */
+  /* transform: transform 250ms; */
+  transform: translateY(-3px);
+  opacity: 0.5;
+}
+
 .aa-price-package .aa-price {
   padding-bottom: 1.5rem;
   background-color: #f5fafd;
