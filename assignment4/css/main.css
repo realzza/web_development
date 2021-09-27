@@ -335,13 +335,3 @@ h6,
 .anaconda-mr-1 {
   margin-right: 1em;
 }
-
-a {
-  text-decoration: none;
-  text-decoration-line: none;
-  text-decoration-thickness: initial;
-  text-decoration-style: initial;
-  text-decoration-color: initial;
-  color: #008dd3;
-  transition: all 0.3s;
-}
