@@ -204,7 +204,12 @@ h6,
 .aa-testimonials-section .aa-testimonials img {
   border-radius: 100%;
   width: 96px;
-  height: auto;
+  height: 96px;
+}
+
+.news-content {
+  text-align: justify;
+  padding-top: 10px;
 }
 
 .pt-3,
