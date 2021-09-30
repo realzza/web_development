@@ -201,10 +201,22 @@ h6,
   padding-bottom: 1em;
 }
 
-.aa-testimonials-section .aa-testimonials img {
+img .aa-testimonials-section .aa-testimonials {
   border-radius: 100%;
   width: 96px;
   height: 96px;
+}
+
+.user-face {
+  border-radius: 100%;
+  width: 96px;
+  height: auto;
+}
+
+.news-interface {
+  /* border-radius: 100%; */
+  width: 100%;
+  height: auto;
 }
 
 .news-content {
