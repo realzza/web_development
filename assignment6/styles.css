@@ -115,7 +115,7 @@ img:hover {
   transition-duration: 0.5s;
 }
 :root {
-  --mainColor: #5d9adf;
+  --mainColor: #0366d6;
 }
 
 .links {
@@ -126,7 +126,7 @@ img:hover {
   );
   background-position: 0 100%;
   background-repeat: repeat-x;
-  background-size: 4px 2px;
+  background-size: 4px 2.5px;
   color: rgb(59, 59, 59);
   text-decoration: none;
   transition: background-size 0.5s;
@@ -135,6 +135,7 @@ img:hover {
 
 .links:hover {
   color: white;
+  font-weight: bold;
   transition: color 0.3s;
   background-size: 4px 50px;
 }
