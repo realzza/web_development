@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Assignment 7 - Final Project Proposal & Wireframes</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="author" content="Ziang Zhou" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <h1>Final Project Proposal & Wireframes</h1>
+    <p class="author_info">Ziang Zhou &nbsp;&nbsp;&nbsp; Class 22@Duke</p>
+    <h2 id="ideas">Proposal</h2>
+    <p>
+      For this proposal, I plan to deploy a bird-related web app, which mainly
+      has two functions: 1) Fetch the latest region-specific bird-spotting
+      information. 2) Web-based bird sound classification. The former function
+      will be using the location API to get the current location and the
+      <a class="links" href="https://ebird.org/explore">ebird API v2</a>
+      to fetch information of bird-spotting near this region. The latter
+      functionality will deploy the bird classification model through
+      javascript.
+    </p>
+    <p>
+      There are still some difficulties to finish the first function, such as
+      mapping location (long, lat) to ebird-api-specific region code, which is
+      indispensable in API JSON fetching. Moreover, ebird requires daily
+      updating API, therefore causing difficulties for deployment. I plan to
+      finish the first function and move to the next function if everything goes
+      on well with the first one and time permits.
+    </p>
+    <h2>API Adjustment</h2>
+    <p>
+      To get the bird activities near the user, the application needs to be
+      acknowledged about the user's location. Therefore, the
+      <a class="links" href="http://api.open-notify.org/iss-now.json"
+        >map api</a
+      >
+      will be used to fetch the latitude and longitude of the user's location.
+      The location information will be used by
+      <a class="links" href="https://ebird.org/explore">ebird API v2</a>, and
+      return a JSON of recent bird activities spotted in that region.
+    </p>
+    <p>
+      I tested my idea by writing code to fetch data from the API, and they
+      succeeded. It is also worth noticing that ebird api requires an
+      authentication to use, and the authentication is daily-authorizing.
+    </p>
+    <p>
+      <img src="img/getBirdAct.png" class="terminal" alt="Terminal" />
+    </p>
+    <p id="terminal-caption">Code validation of two APIs</p>
+
+    <h2>Sitemap</h2>
+    <p>
+      The sitemap has a simple structure, contructed of <i>Search</i> Section
+      and <i>Identify</i> Section. In each of the sections, there are two pages
+      respectively demonstrating before and after searching or identifying.
+    </p>
+    <p>
+      <img class="terminal" id="sitemap" src="img/sitemap.svg" />
+    </p>
+    <p class="caption">Sitemap of Bird Appreciation Website</p>
+    <h2>Javascripts Libraries</h2>
+    <p>
+      As I mentioned in the
+      <a class="links" href="#ideas" class="links">ideas</a> section, my final
+      project is still undecided. But one functionality that I would like to
+      add, no matter what final project I will be working on, is to access web
+      with database via javascript, to either enable user registration, or
+      information collection for user/audience feedback. To realize this
+      functionality, as is introduced by this
+      <a
+        href="https://dzone.com/articles/create-user-registration-and-login-using-web-api-a"
+        class="links"
+        >essay</a
+      >, react.js is something I should know about.
+    </p>
+    <p class="github-api">
+      <a href="https://github.com/facebook/react"
+        ><img src="https://gh-card.dev/repos/facebook/react.svg?fullname="
+      /></a>
+    </p>
+    <p>
+      Jquery is another good choice. As I have navigate through different
+      materials, I found that jquery is handy to make javascript programming on
+      your website much more easier by offering lightweight and accessible apis
+      to avoid unnecessary heavy coding.
+    </p>
+    <p class="github-api">
+      <a href="https://github.com/jquery/jquery"
+        ><img src="https://gh-card.dev/repos/jquery/jquery.svg?fullname="
+      /></a>
+    </p>
+
+    <script src="https://cdn.jsdelivr.net/gh/lepture/github-cards@latest/jsdelivr/widget.js"></script>
+  </body>
+</html>
