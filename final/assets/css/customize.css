@@ -1,0 +1,262 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+body,
+h2 {
+  background-image: url(assets/img/bird_bg.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: rgb(255, 255, 255);
+  font-family: "Lato", sans-serif;
+  font-weight: lighter;
+}
+
+header {
+  width: 100%;
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 10px;
+  height: 20vh;
+  /* background: url(https://wallpaper.wiki/wp-content/uploads/2017/05/wallpaper.wiki-Beautiful-Full-HD-Wallpaper-Download-Free-PIC-WPE0010098.jpg)
+    no-repeat 50% 50%; */
+  /* background: white; */
+  background-size: cover;
+}
+
+.content {
+  width: 94%;
+  margin: 4em auto;
+  font-size: 20px;
+  line-height: 30px;
+  text-align: justify;
+}
+
+.logo {
+  font-family: "Lato", sans-serif;
+  line-height: 60px;
+  position: fixed;
+  float: left;
+  margin: 16px 46px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 20px;
+  /* letter-spacing: 2px; */
+}
+
+nav {
+  position: fixed;
+  width: 100%;
+  line-height: 60px;
+}
+
+nav ul {
+  line-height: 60px;
+  list-style: none;
+  background: rgba(0, 0, 0, 0);
+  overflow: hidden;
+  color: #fff;
+  padding: 0;
+  text-align: right;
+  margin: 0;
+  padding-right: 40px;
+  transition: 1s;
+}
+
+nav.black ul {
+  background: #000;
+}
+
+nav ul li {
+  display: inline-block;
+  padding: 16px 40px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+}
+
+.menu {
+  font-family: "Lato", sans-serif;
+}
+
+.menu-icon {
+  line-height: 60px;
+  width: 100%;
+  background: #000;
+  text-align: right;
+  box-sizing: border-box;
+  padding: 15px 24px;
+  cursor: pointer;
+  color: #fff;
+  display: none;
+}
+
+@media (max-width: 786px) {
+  .logo {
+    position: fixed;
+    top: 0;
+    margin-top: 16px;
+  }
+
+  nav ul {
+    max-height: 0px;
+    background: #000;
+  }
+
+  nav.black ul {
+    background: #000;
+  }
+
+  .showing {
+    max-height: 34em;
+  }
+
+  nav ul li {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+}
+
+footer {
+  /* background-color: #fff; */
+  position: absolute;
+  font-size: 24px;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.footer-left {
+  float: left;
+  margin-left: 3%;
+  width: 50%;
+  margin-bottom: 8px;
+  position: relative;
+  font-size: 16px;
+  color: white;
+  font-family: "Lato", sans-serif;
+}
+
+.footer-right {
+  float: right;
+  /* margin-left: 85%; */
+  width: 50%;
+  margin-bottom: 8px;
+  position: relative;
+  font-size: 16px;
+  color: white;
+  /* bottom: 20px; */
+  font-family: "Lato", sans-serif;
+}
+
+/* from presento footer */
+.mt-3,
+.my-3 {
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  font-family: "Lato", sans-serif;
+  /* margin-top: 1rem !important; */
+}
+
+.q_slide_title,
+.q_slide_subtitle,
+.q_slide_text {
+  text-shadow: 0px 0px 10px black, 0px 0px 20px black, 0px 0px 40px black !important;
+}
+
+.carousel-inner .slider_content.center,
+.carousel-inner .slider_content.center .thumb {
+  text-align: center;
+}
+.carousel-inner .slider_content {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.body-container {
+  margin-top: 0px;
+}
+
+.get-start {
+  background-color: rgba(255, 255, 255, 0.418);
+  border-radius: 20px;
+  width: 100%;
+  /* height: 80%; */
+}
+
+.social {
+  margin: auto;
+  /* width: 50%; */
+  /* border: 3px solid green;
+  padding: 10px; */
+}
+
+.mt-3 {
+  margin-top: 10px;
+}
+
+.btn {
+  font-family: "Lato", sans-serif;
+}
+
+.social-icon:hover,
+.author:hover {
+  transform: scale(1.15);
+  color: #60b6e0;
+}
+
+.social-icon,
+.author {
+  color: #36a3da;
+}
+
+/* contact */
+.contact .info {
+  padding: 30px;
+  background: #fff;
+  width: 100%;
+  box-shadow: 0 0 24px 0 rgb(0 0 0 / 12%);
+}
+
+.search-card {
+  background: white;
+}
+
+.search-card {
+  margin: auto;
+  margin-top: 1em;
+  margin-bottom: 5em;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 0px 8px 0 rgb(128 128 128 / 20%),
+    0 6px 20px 0 rgb(128 128 128 / 20%);
+}
+
+/* map frame */
+.map-frame {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.btn {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+#geo-form {
+  margin-bottom: 2em;
+}
